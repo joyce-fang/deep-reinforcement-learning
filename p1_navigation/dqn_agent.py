@@ -15,10 +15,11 @@ TAU = 1e-3              # for soft update of target parameters
 LR = 5e-4               # learning rate 
 UPDATE_EVERY = 4        # how often to update the network
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
+print(device)
 
-
-def dqn(agent, env, n_episodes=1500, max_t=1000,
+def dqn(agent, env, n_episodes=1000, max_t=1000,
         eps_start=1.0, eps_end=0.01, eps_decay=0.995,
         min_score_goal=13.0,
         is_pixel=False):
@@ -75,7 +76,7 @@ def dqn(agent, env, n_episodes=1500, max_t=1000,
 class Agent():
     """Interacts with and learns from the environment."""
 
-    def __init__(self, state_size, action_size, seed, is_pixel=False):
+    def __init__(self, state_size, action_size, seed, is_ddqn=True, is_pixel=False):
         """Initialize an Agent object.
         
         Params
@@ -87,6 +88,7 @@ class Agent():
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)
+        self.is_ddqn = is_ddqn
         self.is_pixel = is_pixel
 
         # Q-Network
@@ -148,8 +150,12 @@ class Agent():
         """
         states, actions, rewards, next_states, dones = experiences
 
-        # Get max predicted Q values (for next states) from target model
-        Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
+        # Get Q target
+        if self.is_ddqn:
+            Q_local_best_action = self.qnetwork_local(next_states).detach().max(1)[1]
+            Q_targets_next = self.qnetwork_target(next_states).detach().gather(1, Q_local_best_action.unsqueeze(1))
+        else:
+            Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
         # Compute Q targets for current states 
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
 
