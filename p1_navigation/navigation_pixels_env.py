@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 class BananaPixelEnv():
     def __init__(self, env, num_frames=4):
@@ -24,8 +25,14 @@ class BananaPixelEnv():
         return self.state
 
     def step(self, action):
+        #t0 = time.time()
         self.env_info = self.env.step(np.int32(action).astype(np.int32))[self.brain_names[0]]
+        #print("env interaction time: {}".format(time.time()-t0))
+
+        #t0 = time.time()
         self._update_state()
+        #print("update state time: {}".format(time.time() - t0))
+
         reward = self.env_info.rewards[0]
         done = self.env_info.local_done[0]
         return self.state, reward, done, None
