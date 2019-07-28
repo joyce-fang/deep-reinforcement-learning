@@ -68,7 +68,10 @@ def dqn(agent, env, n_episodes=1000, max_t=1000,
         if np.mean(scores_window) >= min_score_goal and not solved:
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.format(i_episode - 100,
                                                                                          np.mean(scores_window)))
-            torch.save(agent.qnetwork_local.state_dict(), 'checkpoint.pth')
+            if is_pixel:
+                torch.save(agent.qnetwork_local.state_dict(), 'checkpoint_pixel.pth')
+            else:
+                torch.save(agent.qnetwork_local.state_dict(), 'checkpoint.pth')
             solved = True
     return scores
 
@@ -76,7 +79,7 @@ def dqn(agent, env, n_episodes=1000, max_t=1000,
 class Agent():
     """Interacts with and learns from the environment."""
 
-    def __init__(self, state_size, action_size, seed, is_ddqn=True, is_pixel=False):
+    def __init__(self, state_size, action_size, seed, is_ddqn=True, is_pixel=False, buffer_size=BUFFER_SIZE):
         """Initialize an Agent object.
         
         Params
@@ -101,7 +104,7 @@ class Agent():
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
 
         # Replay memory
-        self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)
+        self.memory = ReplayBuffer(action_size, buffer_size, BATCH_SIZE, seed)
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
     
