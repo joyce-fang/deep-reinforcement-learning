@@ -3,8 +3,32 @@
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
 # Project 1: Navigation
+This project is for training DQN agents for Unity Navigation environments. This agent learns to collect yellow bananas from 37 dimensions state. For setting up the environment please see [Setting Up Environment](#setting-up-environment).
 
-### Introduction
+### Training DQN Agent
+Please run the follow notebooks to train a DQN agent after setting up the environment: 
+- `Navigation.ipynb` for learning an agent using 37 dimensions which contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
+
+The notebook call `dqn_agent.py` file to initialize the agent, run the environment, and train the agent network. The neural network models are in the `model.py` file. 
+In `Navigation.ipynb` we are able to solve the environment (get an average score of +13 over 100 consecutive episodes) within 500 episodes using **Double DQN**.
+
+### Result
+Plot of reward over episode:
+
+![](navigation_result.png)
+
+Output of the training result:
+
+- Episode 100	Average Score: 0.59
+- Episode 200	Average Score: 4.55
+- Episode 300	Average Score: 7.68
+- Episode 400	Average Score: 10.97
+- Episode 499	Average Score: 13.03
+
+Youtube video shows the agent trained using Double DQN: https://youtu.be/cj2vptAejDE
+
+### Setting Up Environment
+##### Introduction
 
 For this project, you will train an agent to navigate (and collect bananas!) in a large, square world.  
 
@@ -20,7 +44,7 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
 
-### Getting Started
+##### Getting Started
 
 1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
@@ -33,12 +57,9 @@ The task is episodic, and in order to solve the environment, your agent must get
     (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
 
 2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
+ 
 
-### Instructions
-
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
-
-### (Optional) Challenge: Learning from Pixels
+##### (Optional) Challenge: Learning from Pixels
 
 After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
 
@@ -53,3 +74,4 @@ You need only select the environment that matches your operating system:
 Then, place the file in the `p1_navigation/` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
 
 (_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+
