@@ -3,16 +3,29 @@
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
 # Project 1: Navigation
-This project is for training DQN agents for Unity Navigation environments. This includes learning from 37 dimensions state and learning from raw pixels. For setting up the environment please see [Setting Up Environment](#setting-up-environment).
+This project is for training DQN agents for Unity Navigation environments. This agent learns to collect yellow bananas from 37 dimensions state. For setting up the environment please see [Setting Up Environment](#setting-up-environment).
 
 ### Training DQN Agent
-Please run the follow notebooks to train a DQN agent after setting up the environment:
+Please run the follow notebooks to train a DQN agent after setting up the environment: 
 - `Navigation.ipynb` for learning an agent using 37 dimensions which contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
-- `Navigation_Pixels.ipynb` for learning an agent using 84 x 84 x 3 RGB images as states.
 
-Both of the above notebooks call `dqn_agent.py` file to initialize the agent, run the environment, and train the agent network. The neural network models are in the `model.py` file. 
+The notebook call `dqn_agent.py` file to initialize the agent, run the environment, and train the agent network. The neural network models are in the `model.py` file. 
+In `Navigation.ipynb` we are able to solve the environment (get an average score of +13 over 100 consecutive episodes) within 500 episodes using **Double DQN**.
 
-In `Navigation.ipynb` we are able to solve the environment (get an average score of +13 over 100 consecutive episodes) within 500 episodes. The reward over episodes plots are saved in `report/plots`.
+### Result
+Plot of reward over episode:
+
+![](navigation_result.png)
+
+Output of the training result:
+
+- Episode 100	Average Score: 0.59
+- Episode 200	Average Score: 4.55
+- Episode 300	Average Score: 7.68
+- Episode 400	Average Score: 10.97
+- Episode 499	Average Score: 13.03
+
+Youtube video shows the agent trained using Double DQN: https://youtu.be/cj2vptAejDE
 
 ### Setting Up Environment
 ##### Introduction
