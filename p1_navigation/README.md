@@ -9,8 +9,8 @@ This project is for training DQN agents for Unity Navigation environments. This 
 Please run the follow notebooks to train a DQN agent after setting up the environment: 
 - `Navigation.ipynb` for learning an agent using 37 dimensions which contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
 
-The notebook call `dqn_agent.py` file to initialize the agent, run the environment, and train the agent network. The neural network models are in the `model.py` file. 
-In `Navigation.ipynb` we are able to solve the environment (get an average score of +13 over 100 consecutive episodes) within 500 episodes using **Double DQN**.
+The notebook call `dqn_agent.py` file to initialize the agent, run the environment, and train the agent network. The neural network models are in the `model.py` file. In `Navigation.ipynb` we are able to solve the environment (get an average score of +13 over 100 consecutive episodes) within 500 episodes using **Double DQN**.
+*Note: The code is adapted from Udacity DRLND DQN homework.*
 
 ### Result
 Plot of reward over episode:
