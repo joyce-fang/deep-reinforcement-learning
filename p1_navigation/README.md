@@ -3,8 +3,9 @@
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
 # Project 1: Navigation
-This project is for training DQN agents for Unity Navigation environments. This agent learns to collect yellow bananas from 37 dimensions state. For setting up the environment please see [Setting Up Environment](#setting-up-environment).
+This project is for training Deep Q-Network (DQN) agents for Unity Navigation environments. This agent learns to collect yellow bananas from 37 dimensions state. For setting up the environment please see [Setting Up Environment](#setting-up-environment).
 
+DQN is developed by Google DeepMind team. It allows training a reinforcement learning agent with high dimensional state space (e.g. image input). The agent use a deep neural network for function approximation of the value function. For detail please see [this paper](https://www.nature.com/articles/nature14236).
 ### Training DQN Agent
 Please run the follow notebooks to train a DQN agent after setting up the environment: 
 - `Navigation.ipynb` for learning an agent using 37 dimensions which contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
