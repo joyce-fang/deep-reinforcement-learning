@@ -18,7 +18,7 @@ DDPG adapts the idea of Deep Q-Learning to continuous control problem. It is a m
 ### Training DDPG Agent
 Please run the follow notebooks to train a DDPG agent after setting up the environment: 
 - `Continuous_Control-DDPG.ipynb` for learning an agent using the second version of environment, which contains 20 identical agents, each with its own copy of the environment.
-- `dqn_agent.py` file is called in the notebook to initialize the DDPG agent, run the environment, and train the agent's actor and critic network.
+- `ddpg_agent.py` file is called in the notebook to initialize the DDPG agent, run the environment, and train the agent's actor and critic network.
 - The neural network models are in the `model.py` file. Both actor and critic network are 2 layer fully connected network with [128,64] units.
 
 In `Continuous_Control-DDPG.ipynb` we are able to solve the environment (get an average score of +30 over 100 consecutive episodes) within 135 episodes using **DDPG** algorithm. The learning rate is tuned to 1e-4 for both actor and critic network, and the action noise is Ornstein–Uhlenbeck noise.
@@ -31,11 +31,22 @@ Plot of reward over episode:
 
 Output of the training result:
 
-- Episode 100	Average Score: 0.59
-- Episode 200	Average Score: 4.55
-- Episode 300	Average Score: 7.68
-- Episode 400	Average Score: 10.97
-- Episode 499	Average Score: 13.03
+- Episode 10	Average Score: 0.12
+- Episode 20	Average Score: 1.11
+- Episode 30	Average Score: 2.66
+- Episode 40	Average Score: 6.19
+- Episode 50	Average Score: 12.75
+- Episode 60	Average Score: 22.79
+- Episode 70	Average Score: 34.69
+- Episode 80	Average Score: 35.28
+- Episode 90	Average Score: 35.30
+- Episode 100	Average Score: 35.28
+- Episode 110	Average Score: 35.54
+- Episode 120	Average Score: 34.76
+- Episode 130	Average Score: 33.82
+- **Environment solved in 135 episodes!	Average Score: 30.08**
+- Episode 140	Average Score: 34.64
+- Episode 150	Average Score: 34.30
 
 Youtube video shows the agent trained using DDPG: https://youtu.be/pc01u3jE_jw
 
