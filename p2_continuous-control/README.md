@@ -1,12 +1,56 @@
 [//]: # (Image References)
 
+
 [image1]: https://user-images.githubusercontent.com/10624937/43851024-320ba930-9aff-11e8-8493-ee547c6af349.gif "Trained Agent"
 [image2]: https://user-images.githubusercontent.com/10624937/43851646-d899bf20-9b00-11e8-858c-29b5c2c94ccc.png "Crawler"
 
 
 # Project 2: Continuous Control
 
-### Introduction
+
+In the project we train a Deep Deterministic Policy Gradient (DDPG) agent to solve Unity Reacher environments. Please see the following for the detail description of the environment:
+- [Introduction to Reacher Environment](#introduction-to-reacher-environment)
+- [Solving the Environment](#solving-the-environment)
+- [Getting Started](#getting-started)
+
+DDPG adapts the idea of Deep Q-Learning to continuous control problem. It is a model-free algorithm using actor-critic framework with deterministic policy gradient. DDPG is first published by Google DeepMind. For detail please see [this paper](https://arxiv.org/pdf/1509.02971.pdf).
+
+### Training DDPG Agent
+Please run the follow notebooks to train a DDPG agent after setting up the environment: 
+- `Continuous_Control-DDPG.ipynb` for learning an agent using the second version of environment, which contains 20 identical agents, each with its own copy of the environment.
+- `ddpg_agent.py` file is called in the notebook to initialize the DDPG agent, run the environment, and train the agent's actor and critic network.
+- The neural network models are in the `model.py` file. Both actor and critic network are 2 layer fully connected network with [128,64] units.
+
+In `Continuous_Control-DDPG.ipynb` we are able to solve the environment (get an average score of +30 over 100 consecutive episodes) within 135 episodes using **DDPG** algorithm. The learning rate is tuned to 1e-4 for both actor and critic network, and the action noise is Ornstein–Uhlenbeck noise.
+*Note: The code is adapted from Udacity DRLND DDPG examples.*
+
+#### Result
+Plot of reward over episode:
+
+![](result-ddpg.png)
+
+Output of the training result:
+
+- Episode 10	Average Score: 0.12
+- Episode 20	Average Score: 1.11
+- Episode 30	Average Score: 2.66
+- Episode 40	Average Score: 6.19
+- Episode 50	Average Score: 12.75
+- Episode 60	Average Score: 22.79
+- Episode 70	Average Score: 34.69
+- Episode 80	Average Score: 35.28
+- Episode 90	Average Score: 35.30
+- Episode 100	Average Score: 35.28
+- Episode 110	Average Score: 35.54
+- Episode 120	Average Score: 34.76
+- Episode 130	Average Score: 33.82
+- **Environment solved in 135 episodes!	Average Score: 30.08**
+- Episode 140	Average Score: 34.64
+- Episode 150	Average Score: 34.30
+
+Youtube video shows the agent trained using DDPG: https://youtu.be/pc01u3jE_jw
+
+### Introduction to Reacher Environment
 
 For this project, you will work with the [Reacher](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#reacher) environment.
 
@@ -16,7 +60,7 @@ In this environment, a double-jointed arm can move to target locations. A reward
 
 The observation space consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm. Each action is a vector with four numbers, corresponding to torque applicable to two joints. Every entry in the action vector should be a number between -1 and 1.
 
-### Distributed Training
+##### Distributed Training
 
 For this project, we will provide you with two separate versions of the Unity environment:
 - The first version contains a single agent.
@@ -28,17 +72,18 @@ The second version is useful for algorithms like [PPO](https://arxiv.org/pdf/170
 
 Note that your project submission need only solve one of the two versions of the environment. 
 
-#### Option 1: Solve the First Version
+##### Option 1: Solve the First Version
 
 The task is episodic, and in order to solve the environment,  your agent must get an average score of +30 over 100 consecutive episodes.
 
-#### Option 2: Solve the Second Version
+##### Option 2: Solve the Second Version
 
 The barrier for solving the second version of the environment is slightly different, to take into account the presence of many agents.  In particular, your agents must get an average score of +30 (over 100 consecutive episodes, and over all agents).  Specifically,
 - After each episode, we add up the rewards that each agent received (without discounting), to get a score for each agent.  This yields 20 (potentially different) scores.  We then take the average of these 20 scores. 
 - This yields an **average score** for each episode (where the average is over all 20 agents).
 
 The environment is considered solved, when the average (over 100 episodes) of those average scores is at least +30. 
+
 
 ### Getting Started
 
@@ -62,11 +107,7 @@ The environment is considered solved, when the average (over 100 episodes) of th
 
 2. Place the file in the DRLND GitHub repository, in the `p2_continuous-control/` folder, and unzip (or decompress) the file. 
 
-### Instructions
-
-Follow the instructions in `Continuous_Control.ipynb` to get started with training your own agent!  
-
-### (Optional) Challenge: Crawler Environment
+##### (Optional) Challenge: Crawler Environment
 
 After you have successfully completed the project, you might like to solve the more difficult **Crawler** environment.
 
