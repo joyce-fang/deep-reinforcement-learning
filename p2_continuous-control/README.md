@@ -50,6 +50,15 @@ Output of the training result:
 
 Youtube video shows the agent trained using DDPG: https://youtu.be/pc01u3jE_jw
 
+### PPO Agent and future work
+We also train a [PPO](https://arxiv.org/abs/1707.06347) agent for the project. Here we folked the [DeepRL](https://github.com/ShangtongZhang/DeepRL) repository and adapt it to run this project. Please see [here](https://github.com/joyce-fang/DeepRL/tree/drlnd-p2) for the changes.
+`Continuous_Control-PPO.ipynb` is the notebook for training PPO agent, together with an environment wrapper `reacher_env.py` called by the above library. The current result shows steady convergence but not as fast as DDPG (see plot below).
+
+![](result-ppo.png)
+
+For future work, we plan to further tune PPO, and implement [A3C](https://github.com/ShangtongZhang/DeepRL), [D4PG](https://openreview.net/pdf?id=SyZipzbCb) and other actor-critic algorithms.
+
+
 ### Introduction to Reacher Environment
 
 For this project, you will work with the [Reacher](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#reacher) environment.
